@@ -1,0 +1,7 @@
+defineAuthChallenge:
+  handler: src/index.defineAuthChallenge
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - cognito-idp:*
+      Resource: "*"

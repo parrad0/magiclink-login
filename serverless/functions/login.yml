@@ -1,0 +1,12 @@
+login:
+  handler: src/index.login
+  role: verifyAuthChallengeRole
+  events:
+    - httpApi:
+        path: /login
+        method: get
+        private: false
+        cors: true
+  environment:
+    NODE_PATH: "./:/opt/node_modules"
+    KMS_KEY_ARN: !Ref LogInKMSKey

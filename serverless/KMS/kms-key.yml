@@ -1,0 +1,13 @@
+Type: AWS::KMS::Key
+Properties:
+  Description: "My KMS Key"
+  KeyPolicy:
+    Version: "2012-10-17"
+    Id: loginKey
+    Statement:
+      - Sid: Enable IAM User Permissions
+        Effect: Allow
+        Principal:
+          AWS: !Sub arn:aws:iam::${AWS::AccountId}:root
+        Action: kms:*
+        Resource: "*"

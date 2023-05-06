@@ -1,0 +1,15 @@
+Type: AWS::DynamoDB::Table
+Properties:
+  TableName: EmailVerificationTokens
+  AttributeDefinitions:
+    - AttributeName: token
+      AttributeType: S
+  KeySchema:
+    - AttributeName: token
+      KeyType: HASH
+  ProvisionedThroughput:
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1
+  TimeToLiveSpecification:
+    AttributeName: expiresAt
+    Enabled: true

@@ -1,0 +1,5 @@
+verifyAuthChallengeResponse:
+  handler: src/index.verifyAuthChallengeResponse
+  role: verifyAuthChallengeRole
+  environment:
+    KMS_KEY_ARN: !Ref LogInKMSKey

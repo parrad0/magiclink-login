@@ -1,0 +1,4 @@
+Type: AWS::KMS::Alias
+Properties:
+  AliasName: alias/login-kms-key
+  TargetKeyId: !Ref LogInKMSKey

@@ -1,0 +1,28 @@
+service: magiclink
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  stage: ${env:STAGE, 'dev'}
+  runtime: nodejs14.x
+  region: "eu-west-2"
+  environment:
+    USER_POOL_ID: eu-west-2_G8zxB86DK
+
+functions:
+  - ${file(serverless/functions/login.yml)}
+  - ${file(serverless/functions/auth/CreateAuthChallenge.yml)}
+  - ${file(serverless/functions/auth/DefineAuthChallenge.yml)}
+  - ${file(serverless/functions/auth/VerifyAuthChallengeResponse.yml)}
+
+resources:
+  Resources:
+    loginLambdaRole: ${file(serverless/IAM/sendEmailRole.yml)}
+    DynamoSESCognito: ${file(serverless/IAM/dynamo-cognito-ses.yml)}
+    verifyAuthChallengeRole: ${file(serverless/IAM/verifyAuthChallenge-role.yml)}
+    EmailVerificationTokens: ${file(serverless/dynamodb/emailverificationtable.yml)}
+    LogInKMSKey: ${file(serverless/KMS/kms-key.yml)}
+    AliasLogInKMSKey: ${file(serverless/alias/kms-alias.yml)}
+
+plugins:
+  - serverless-plugin-typescript

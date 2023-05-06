@@ -1,0 +1,11 @@
+register:
+  handler: src/index.register
+  role: DynamoSESCognito
+  events:
+    - httpApi:
+        path: /register
+        method: get
+        private: false
+        cors: true
+  environment:
+    NODE_PATH: "./:/opt/node_modules"
